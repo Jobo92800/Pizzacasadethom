@@ -1,47 +1,8 @@
-import { useEffect, useState } from 'react';
 import { ArrowRight, Phone, Users } from 'lucide-react';
-import ProductCard from './ProductCard';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { supabase, type MenuItem } from '../lib/supabase';
 
 export default function PlaquesPizza() {
-  const [plaques, setPlaques] = useState<MenuItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const { ref, isVisible } = useScrollAnimation();
-
-  useEffect(() => {
-    async function loadPlaques() {
-      const { data: category, error: categoryError } = await supabase
-        .from('categories')
-        .select('id')
-        .eq('slug', 'plaques')
-        .maybeSingle();
-
-      if (categoryError || !category) {
-        setError(true);
-        setLoading(false);
-        return;
-      }
-
-      const { data: items, error: itemsError } = await supabase
-        .from('menu_items')
-        .select('*')
-        .eq('category_id', category.id)
-        .order('sort_order');
-
-      if (itemsError || !items) {
-        setError(true);
-        setLoading(false);
-        return;
-      }
-
-      setPlaques(items);
-      setLoading(false);
-    }
-
-    loadPlaques();
-  }, []);
 
   return (
     <section id="plaques-pizza" className="relative overflow-hidden bg-[#F5E6D3] py-20">
@@ -61,7 +22,7 @@ export default function PlaquesPizza() {
           </p>
         </div>
 
-        <div className="mb-16 grid items-center gap-8 overflow-hidden rounded-3xl border-2 border-[#8B4513]/30 bg-[#3D2817] shadow-2xl lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-center gap-8 overflow-hidden rounded-3xl border-2 border-[#8B4513]/30 bg-[#3D2817] shadow-2xl lg:grid-cols-[1.1fr_0.9fr]">
           <div className="relative min-h-[280px] overflow-hidden sm:min-h-[380px] lg:min-h-[460px]">
             <img
               src="/phot_plaque_1_.PNG"
@@ -76,7 +37,7 @@ export default function PlaquesPizza() {
             </div>
             <h3 className="mb-4 font-['Cinzel'] text-3xl font-semibold sm:text-4xl">Le plaisir de partager</h3>
             <p className="mb-7 text-base leading-relaxed text-[#E8D5BC] sm:text-lg">
-              Retrouvez vos recettes préférées en grand format apéro. Une pâte moelleuse, une garniture généreuse et des parts faciles à partager pour vos soirées entre amis ou en famille.
+              Retrouvez toutes les recettes de la carte en grand format apéro. Une pâte moelleuse, une garniture généreuse et des parts faciles à partager pour vos soirées entre amis ou en famille.
             </p>
             <a
               href="tel:+33670188137"
@@ -88,39 +49,6 @@ export default function PlaquesPizza() {
             </a>
           </div>
         </div>
-
-        {loading && (
-          <div className="flex justify-center py-16">
-            <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#D2691E] border-t-transparent" />
-          </div>
-        )}
-
-        {error && !loading && (
-          <p className="py-12 text-center text-lg font-semibold text-[#8B4513]">
-            Impossible de charger les plaques pour le moment.
-          </p>
-        )}
-
-        {!loading && !error && (
-          <>
-            <div className="mb-8 flex items-center gap-4">
-              <h3 className="font-['Cinzel'] text-2xl font-semibold text-[#3D2817] sm:text-3xl">Toutes les recettes en grand format</h3>
-              <div className="h-px flex-1 bg-[#8B4513]/30" />
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {plaques.map((plaque, index) => (
-                <div key={plaque.id} className="animate-scale-in" style={{ animationDelay: `${index * 0.05}s` }}>
-                  <ProductCard
-                    name={plaque.name}
-                    ingredients={plaque.ingredients}
-                    image={plaque.image}
-                    category="Plaque à partager"
-                  />
-                </div>
-              ))}
-            </div>
-          </>
-        )}
       </div>
     </section>
   );
