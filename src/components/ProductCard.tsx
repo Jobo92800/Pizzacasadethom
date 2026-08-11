@@ -25,7 +25,7 @@ export default function ProductCard({ name, ingredients, image, category }: Prod
       >
         <div className="bg-gradient-to-br from-[#F5E6D3] to-[#E8D5BC] rounded-2xl p-6 border-2 border-[#8B4513] hover:border-[#D2691E] transition-all duration-500 hover:shadow-2xl hover:shadow-[#8B4513]/30 hover:-translate-y-2">
 
-          <div className="relative mb-6 overflow-hidden rounded-xl border-2 border-[#3D2817]">
+          <div className="relative mb-6 overflow-hidden rounded-xl border-2 border-[#1F110C]">
             <div className={`absolute inset-0 bg-gradient-to-br from-[#8B4513]/20 to-transparent z-10 transition-opacity duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`}></div>
             <img
               src={image}
@@ -39,14 +39,14 @@ export default function ProductCard({ name, ingredients, image, category }: Prod
             )}
 
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <div className="bg-[#3D2817]/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#D2691E]">
+              <div className="bg-[#1F110C]/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#D2691E]">
                 <span className="text-[#E8D5BC] text-sm font-medium">Voir détails</span>
               </div>
             </div>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-[#3D2817] font-['Cinzel'] text-xl font-semibold group-hover:text-[#8B4513] transition-colors duration-300">
+            <h3 className="text-[#1F110C] font-['Cinzel'] text-xl font-semibold group-hover:text-[#8B4513] transition-colors duration-300">
               {name}
             </h3>
 
@@ -54,7 +54,7 @@ export default function ProductCard({ name, ingredients, image, category }: Prod
               {ingredientsList.map((ingredient, index) => (
                 <span
                   key={index}
-                  className="inline-flex items-center gap-1.5 bg-[#3D2817]/10 text-[#5D4037] px-3 py-1 rounded-full text-xs font-medium border border-[#8B4513]/30 group-hover:border-[#8B4513]/50 transition-colors duration-300"
+                  className="inline-flex items-center gap-1.5 bg-[#1F110C]/10 text-[#5D4037] px-3 py-1 rounded-full text-xs font-medium border border-[#8B4513]/30 group-hover:border-[#8B4513]/50 transition-colors duration-300"
                 >
                   <span className="w-1.5 h-1.5 bg-[#D2691E] rounded-full"></span>
                   {ingredient}

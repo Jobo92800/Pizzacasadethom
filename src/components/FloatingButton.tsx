@@ -15,7 +15,7 @@ export default function FloatingButton() {
     <a
       href="tel:+33670188137"
       aria-label="Commander par téléphone"
-      className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-[#E8D5BC] pl-4 pr-5 py-3.5 rounded-full shadow-2xl shadow-[#8B4513]/40 hover:shadow-[#8B4513]/60 transition-all duration-500 border-2 border-[#D2691E] ${
+      className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-gradient-to-r from-[#9C5B21] to-[#A0522D] text-[#E8D5BC] pl-4 pr-5 py-3.5 rounded-full shadow-2xl shadow-[#9C5B21]/40 hover:shadow-[#9C5B21]/60 transition-all duration-500 border-2 border-[#D2691E] ${
         visible
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-0 translate-y-8 scale-90 pointer-events-none'

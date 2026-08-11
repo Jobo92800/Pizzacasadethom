@@ -42,14 +42,14 @@ export default function PizzaModal({ isOpen, onClose, name, ingredients, image, 
             e.stopPropagation();
             onClose();
           }}
-          className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-[#3D2817] text-[#E8D5BC] hover:bg-[#8B4513] transition-all duration-300 flex items-center justify-center border-2 border-[#D2691E] hover:scale-110 cursor-pointer"
+          className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-[#1F110C] text-[#E8D5BC] hover:bg-[#8B4513] transition-all duration-300 flex items-center justify-center border-2 border-[#D2691E] hover:scale-110 cursor-pointer"
           aria-label="Fermer"
         >
           <X size={20} />
         </button>
 
         <div className="relative h-80 overflow-hidden rounded-t-3xl">
-          <div className="absolute inset-0 bg-gradient-to-t from-[#3D2817]/80 to-transparent z-[5]"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1F110C]/80 to-transparent z-[5]"></div>
           <img
             src={image}
             alt={name}
@@ -69,7 +69,7 @@ export default function PizzaModal({ isOpen, onClose, name, ingredients, image, 
 
         <div className="p-8">
           <div className="mb-6">
-            <h3 className="font-['Cinzel'] text-2xl font-semibold text-[#3D2817] mb-4 flex items-center gap-3">
+            <h3 className="font-['Cinzel'] text-2xl font-semibold text-[#1F110C] mb-4 flex items-center gap-3">
               <span className="w-8 h-8 bg-[#8B4513] rounded-full flex items-center justify-center text-[#E8D5BC] text-sm">✓</span>
               Ingrédients
             </h3>
@@ -77,11 +77,11 @@ export default function PizzaModal({ isOpen, onClose, name, ingredients, image, 
               {ingredientsList.map((ingredient, index) => (
                 <div
                   key={index}
-                  className="bg-[#3D2817]/10 rounded-lg px-4 py-3 border-2 border-[#8B4513]/30 hover:border-[#8B4513] transition-all duration-300"
+                  className="bg-[#1F110C]/10 rounded-lg px-4 py-3 border-2 border-[#8B4513]/30 hover:border-[#8B4513] transition-all duration-300"
                 >
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 bg-[#D2691E] rounded-full"></span>
-                    <span className="text-[#3D2817] font-medium capitalize">{ingredient}</span>
+                    <span className="text-[#1F110C] font-medium capitalize">{ingredient}</span>
                   </div>
                 </div>
               ))}

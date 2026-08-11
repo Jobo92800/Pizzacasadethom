@@ -212,14 +212,14 @@ export default function PizzaBackground() {
   return (
     <>
       {!isLoaded && (
-        <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#3D2817] z-50 gap-5">
+        <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#1F110C] z-50 gap-5">
           <div className="text-6xl animate-spin">🍕</div>
-          <p className="text-[#f5c842] text-sm tracking-[3px] uppercase">
+          <p className="text-[#D7AA65] text-sm tracking-[3px] uppercase">
             Chargement des ingrédients…
           </p>
           <div className="w-52 h-1 bg-white/10 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-[#f5c842] to-[#ff6b35] rounded-full transition-all duration-300"
+              className="h-full bg-gradient-to-r from-[#D7AA65] to-[#641208] rounded-full transition-all duration-300"
               style={{ width: `${loadProgress}%` }}
             />
           </div>

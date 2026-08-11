@@ -41,8 +41,8 @@ export default function BurgersMenu() {
   }, []);
 
   return (
-    <section className="py-20 bg-[#3D2817] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#3D2817] via-[#2D1F12] to-[#3D2817]"></div>
+    <section className="py-20 bg-[#1F110C] relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1F110C] via-[#2D1F12] to-[#1F110C]"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div ref={ref} className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>

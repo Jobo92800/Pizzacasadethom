@@ -143,7 +143,7 @@ export default function GoogleReviews() {
   }, [isPaused]);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#2D1F12] to-[#3D2817] overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-[#2D1F12] to-[#1F110C] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           ref={ref}
@@ -184,7 +184,7 @@ export default function GoogleReviews() {
         {/* Left gradient fade */}
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#2D1F12] to-transparent z-10 pointer-events-none" />
         {/* Right gradient fade */}
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#3D2817] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#1F110C] to-transparent z-10 pointer-events-none" />
 
         <div
           ref={trackRef}
@@ -194,7 +194,7 @@ export default function GoogleReviews() {
           {doubled.map((review, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 bg-gradient-to-br from-[#5D4037] to-[#3D2817] border border-[#8B4513] rounded-2xl p-6 flex flex-col justify-between shadow-xl"
+              className="flex-shrink-0 bg-gradient-to-br from-[#5D4037] to-[#1F110C] border border-[#8B4513] rounded-2xl p-6 flex flex-col justify-between shadow-xl"
               style={{ width: CARD_WIDTH }}
             >
               <div>

@@ -54,27 +54,27 @@ export default function PizzaMenu() {
   const activeItems = activeCat ? itemsByCategory[activeCat.id] ?? [] : [];
 
   return (
-    <section id="menu" className="py-20 bg-[#E8D5BC] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#E8D5BC] via-[#D4C4A8] to-[#E8D5BC]"></div>
+    <section id="menu" className="py-20 bg-[#F7E8C7] relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#F7E8C7] via-[#C6B28E] to-[#F7E8C7]"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={ref} className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="font-['Cinzel'] text-4xl sm:text-5xl font-bold text-[#3D2817] mb-4">
+          <h2 className="font-['Cinzel'] text-4xl sm:text-5xl font-bold text-[#1F110C] mb-4">
             Nos Pizzas
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#8B4513] to-transparent mx-auto mb-6"></div>
-          <p className="text-lg text-[#8B4513] font-semibold">Pains à pizza pétris et façonnés à la main sur place</p>
+          <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#9C5B21] to-transparent mx-auto mb-6"></div>
+          <p className="text-lg text-[#9C5B21] font-semibold">Pains à pizza pétris et façonnés à la main sur place</p>
         </div>
 
         {loading && (
           <div className="flex justify-center items-center py-20">
-            <div className="w-12 h-12 border-4 border-[#8B4513] border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-12 h-12 border-4 border-[#9C5B21] border-t-transparent rounded-full animate-spin"></div>
           </div>
         )}
 
         {error && !loading && (
           <div className="text-center py-20">
-            <p className="text-[#8B4513] text-lg font-semibold">Impossible de charger le menu pour le moment.</p>
+            <p className="text-[#9C5B21] text-lg font-semibold">Impossible de charger le menu pour le moment.</p>
           </div>
         )}
 
@@ -87,8 +87,8 @@ export default function PizzaMenu() {
                   onClick={() => setActiveCategory(category.slug)}
                   className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
                     activeCategory === category.slug
-                      ? 'bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-[#E8D5BC] shadow-lg shadow-[#8B4513]/30 border-2 border-[#D2691E]'
-                      : 'bg-[#3D2817] text-[#E8D5BC] border-2 border-[#8B4513] hover:border-[#D2691E]'
+                      ? 'bg-gradient-to-r from-[#9C5B21] to-[#AA632D] text-[#F7E8C7] shadow-lg shadow-[#9C5B21]/30 border-2 border-[#D5A14C]'
+                      : 'bg-[#1F110C] text-[#F7E8C7] border-2 border-[#9C5B21] hover:border-[#D5A14C]'
                   }`}
                 >
                   {category.name}
