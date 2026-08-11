@@ -19,10 +19,9 @@ export default function Hero() {
         <div className="w-full max-w-4xl">
           <div className="relative animate-fade-in">
             <img
-              src="/ChatGPT_Image_11_août_2026,_16_20_52.png"
+              src="/Design_sans_titre_(10).png"
               alt="La Case de Thom - Pizzeria Burger Palavas-les-Flots"
               className="w-full h-auto object-contain"
-              style={{ mixBlendMode: 'multiply' }}
             />
           </div>
 
