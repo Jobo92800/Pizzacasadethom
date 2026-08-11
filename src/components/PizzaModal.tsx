@@ -1,5 +1,6 @@
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
+import type { MenuItemOption } from '../lib/supabase';
 
 interface PizzaModalProps {
   isOpen: boolean;
@@ -8,9 +9,10 @@ interface PizzaModalProps {
   ingredients: string;
   image: string;
   category?: string;
+  options?: MenuItemOption[];
 }
 
-export default function PizzaModal({ isOpen, onClose, name, ingredients, image, category }: PizzaModalProps) {
+export default function PizzaModal({ isOpen, onClose, name, ingredients, image, category, options = [] }: PizzaModalProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -87,6 +89,19 @@ export default function PizzaModal({ isOpen, onClose, name, ingredients, image, 
               ))}
             </div>
           </div>
+
+          {options.length > 0 && (
+            <div className="mb-6 border-t-2 border-[#8B4513]/30 pt-6">
+              <h3 className="font-['Cinzel'] text-2xl font-semibold text-[#1F110C] mb-4">Options disponibles</h3>
+              <div className="flex flex-wrap gap-3">
+                {options.map((option) => (
+                  <span key={option.id} className="rounded-full border-2 border-[#D5A14C] bg-[#D5A14C]/10 px-4 py-2 font-semibold text-[#641208]">
+                    {option.name}{option.price > 0 ? ` +${option.price.toFixed(2).replace('.', ',')} €` : ''}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="border-t-2 border-[#8B4513]/30 pt-6">
             <p className="text-[#5D4037] text-center mb-6 font-semibold">

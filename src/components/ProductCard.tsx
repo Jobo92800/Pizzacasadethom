@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Phone } from 'lucide-react';
 import PizzaModal from './PizzaModal';
+import type { MenuItemOption } from '../lib/supabase';
 
 interface ProductCardProps {
   name: string;
   ingredients: string;
   image: string;
   category?: string;
+  options?: MenuItemOption[];
 }
 
-export default function ProductCard({ name, ingredients, image, category }: ProductCardProps) {
+export default function ProductCard({ name, ingredients, image, category, options = [] }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -62,6 +64,19 @@ export default function ProductCard({ name, ingredients, image, category }: Prod
               ))}
             </div>
 
+            {options.length > 0 && (
+              <div className="rounded-xl border border-[#D5A14C]/50 bg-[#D5A14C]/10 px-4 py-3">
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-[#641208]">En supplément</p>
+                <div className="flex flex-wrap gap-2">
+                  {options.map((option) => (
+                    <span key={option.id} className="rounded-full border border-[#D5A14C] bg-[#F7E8C7] px-3 py-1 text-xs font-semibold text-[#641208]">
+                      {option.name}{option.price > 0 ? ` +${option.price.toFixed(2).replace('.', ',')} €` : ''}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="pt-4 border-t-2 border-[#8B4513]/30">
               <a
                 href="tel:+33670188137"
@@ -83,6 +98,7 @@ export default function ProductCard({ name, ingredients, image, category }: Prod
         ingredients={ingredients}
         image={image}
         category={category}
+        options={options}
       />
     </>
   );

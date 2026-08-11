@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { supabase, type Category, type MenuItem } from '../lib/supabase';
+import { supabase, type Category, type MenuItem, type MenuItemOption } from '../lib/supabase';
 
 export default function PizzaMenu() {
   const [activeCategory, setActiveCategory] = useState<string>('');
@@ -35,8 +35,30 @@ export default function PizzaMenu() {
         return;
       }
 
+      const { data: options, error: optionsError } = await supabase
+        .from('menu_item_options')
+        .select('*')
+        .order('sort_order');
+
+      if (optionsError || !options) {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+
+      const optionsByItem: Record<string, MenuItemOption[]> = {};
+      for (const option of options as MenuItemOption[]) {
+        if (!optionsByItem[option.menu_item_id]) optionsByItem[option.menu_item_id] = [];
+        optionsByItem[option.menu_item_id].push(option);
+      }
+
+      const itemsWithOptions = (items as MenuItem[]).map((item) => ({
+        ...item,
+        options: optionsByItem[item.id] ?? [],
+      }));
+
       const grouped: Record<string, MenuItem[]> = {};
-      for (const item of items) {
+      for (const item of itemsWithOptions) {
         if (!grouped[item.category_id]) grouped[item.category_id] = [];
         grouped[item.category_id].push(item);
       }
@@ -108,6 +130,7 @@ export default function PizzaMenu() {
                     ingredients={item.ingredients}
                     image={item.image}
                     category={activeCat?.name}
+                    options={item.options}
                   />
                 </div>
               ))}
