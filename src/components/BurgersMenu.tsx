@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { supabase, type MenuItem } from '../lib/supabase';
+import { supabase, type MenuItem, type MenuItemOption } from '../lib/supabase';
 
 export default function BurgersMenu() {
   const [burgers, setBurgers] = useState<MenuItem[]>([]);
@@ -35,7 +35,23 @@ export default function BurgersMenu() {
         return;
       }
 
-      setBurgers(items);
+      const { data: options } = await supabase
+        .from('menu_item_options')
+        .select('*')
+        .order('sort_order');
+
+      const optionsByItem: Record<string, MenuItemOption[]> = {};
+      for (const option of (options ?? []) as MenuItemOption[]) {
+        if (!optionsByItem[option.menu_item_id]) optionsByItem[option.menu_item_id] = [];
+        optionsByItem[option.menu_item_id].push(option);
+      }
+
+      const itemsWithOptions = (items as MenuItem[]).map((item) => ({
+        ...item,
+        options: optionsByItem[item.id] ?? [],
+      }));
+
+      setBurgers(itemsWithOptions);
       setLoading(false);
     })();
   }, []);
@@ -84,6 +100,7 @@ export default function BurgersMenu() {
                   name={burger.name}
                   ingredients={burger.ingredients}
                   image={burger.image}
+                  options={burger.options}
                 />
               </div>
             ))}

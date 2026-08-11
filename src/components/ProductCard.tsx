@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Phone } from 'lucide-react';
 import PizzaModal from './PizzaModal';
-import type { MenuItemOption } from '../lib/supabase';
+import { formatEuro, splitOptions, type MenuItemOption } from '../lib/supabase';
 
 interface ProductCardProps {
   name: string;
@@ -16,6 +16,7 @@ export default function ProductCard({ name, ingredients, image, category, option
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const ingredientsList = ingredients.split(',').map(ing => ing.trim());
+  const { formats, supplements } = splitOptions(options);
 
   return (
     <>
@@ -64,13 +65,27 @@ export default function ProductCard({ name, ingredients, image, category, option
               ))}
             </div>
 
-            {options.length > 0 && (
+            {formats.length > 0 && (
+              <div className="overflow-hidden rounded-xl border-2 border-[#8B4513]/30 bg-[#1F110C]/[0.04]">
+                {formats.map((option, index) => (
+                  <div
+                    key={option.id}
+                    className={`flex items-center justify-between px-4 py-2 ${index > 0 ? 'border-t border-[#8B4513]/15' : ''}`}
+                  >
+                    <span className="text-sm font-medium text-[#5D4037]">{option.name}</span>
+                    <span className="text-sm font-bold text-[#8B4513]">{formatEuro(option.price)}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {supplements.length > 0 && (
               <div className="rounded-xl border border-[#D5A14C]/50 bg-[#D5A14C]/10 px-4 py-3">
                 <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-[#641208]">En supplément</p>
                 <div className="flex flex-wrap gap-2">
-                  {options.map((option) => (
+                  {supplements.map((option) => (
                     <span key={option.id} className="rounded-full border border-[#D5A14C] bg-[#F7E8C7] px-3 py-1 text-xs font-semibold text-[#641208]">
-                      {option.name}{option.price > 0 ? ` +${option.price.toFixed(2).replace('.', ',')} €` : ''}
+                      {option.name}{option.price > 0 ? ` +${formatEuro(option.price)}` : ''}
                     </span>
                   ))}
                 </div>

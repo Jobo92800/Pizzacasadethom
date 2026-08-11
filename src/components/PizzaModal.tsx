@@ -1,6 +1,6 @@
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
-import type { MenuItemOption } from '../lib/supabase';
+import { formatEuro, splitOptions, type MenuItemOption } from '../lib/supabase';
 
 interface PizzaModalProps {
   isOpen: boolean;
@@ -27,6 +27,7 @@ export default function PizzaModal({ isOpen, onClose, name, ingredients, image, 
   if (!isOpen) return null;
 
   const ingredientsList = ingredients.split(',').map(ing => ing.trim());
+  const { formats, supplements } = splitOptions(options);
 
   return (
     <div
@@ -90,13 +91,30 @@ export default function PizzaModal({ isOpen, onClose, name, ingredients, image, 
             </div>
           </div>
 
-          {options.length > 0 && (
+          {formats.length > 0 && (
             <div className="mb-6 border-t-2 border-[#8B4513]/30 pt-6">
-              <h3 className="font-['Cinzel'] text-2xl font-semibold text-[#1F110C] mb-4">Options disponibles</h3>
+              <h3 className="font-['Cinzel'] text-2xl font-semibold text-[#1F110C] mb-4">Tarifs</h3>
+              <div className="overflow-hidden rounded-xl border-2 border-[#8B4513]/30 bg-[#1F110C]/[0.04]">
+                {formats.map((option, index) => (
+                  <div
+                    key={option.id}
+                    className={`flex items-center justify-between px-5 py-3 ${index > 0 ? 'border-t border-[#8B4513]/15' : ''}`}
+                  >
+                    <span className="font-medium text-[#5D4037]">{option.name}</span>
+                    <span className="font-bold text-[#8B4513]">{formatEuro(option.price)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {supplements.length > 0 && (
+            <div className="mb-6 border-t-2 border-[#8B4513]/30 pt-6">
+              <h3 className="font-['Cinzel'] text-2xl font-semibold text-[#1F110C] mb-4">En supplément</h3>
               <div className="flex flex-wrap gap-3">
-                {options.map((option) => (
+                {supplements.map((option) => (
                   <span key={option.id} className="rounded-full border-2 border-[#D5A14C] bg-[#D5A14C]/10 px-4 py-2 font-semibold text-[#641208]">
-                    {option.name}{option.price > 0 ? ` +${option.price.toFixed(2).replace('.', ',')} €` : ''}
+                    {option.name}{option.price > 0 ? ` +${formatEuro(option.price)}` : ''}
                   </span>
                 ))}
               </div>
