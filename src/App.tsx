@@ -1,6 +1,7 @@
 import Hero from './components/Hero';
 import WhyUs from './components/WhyUs';
 import PizzaMenu from './components/PizzaMenu';
+import PlaquesPizza from './components/PlaquesPizza';
 import BurgersMenu from './components/BurgersMenu';
 import Extras from './components/Extras';
 import GoogleReviews from './components/GoogleReviews';
@@ -17,6 +18,7 @@ function App() {
         <Hero />
         <WhyUs />
         <PizzaMenu />
+        <PlaquesPizza />
         <BurgersMenu />
         <Extras />
         <GoogleReviews />

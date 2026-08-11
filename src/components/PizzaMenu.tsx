@@ -43,12 +43,14 @@ export default function PizzaMenu() {
 
       setCategories(cats);
       setItemsByCategory(grouped);
-      setActiveCategory(cats[0].slug);
+      const firstVisible = cats.find((c) => c.slug !== 'plaques');
+      setActiveCategory(firstVisible ? firstVisible.slug : cats[0].slug);
       setLoading(false);
     })();
   }, []);
 
-  const activeCat = categories.find(c => c.slug === activeCategory);
+  const visibleCategories = categories.filter((category) => category.slug !== 'plaques');
+  const activeCat = visibleCategories.find(c => c.slug === activeCategory) ?? visibleCategories[0];
   const activeItems = activeCat ? itemsByCategory[activeCat.id] ?? [] : [];
 
   return (
@@ -61,11 +63,7 @@ export default function PizzaMenu() {
             Nos Pizzas
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#8B4513] to-transparent mx-auto mb-6"></div>
-          <p className="text-lg text-[#8B4513] font-semibold">
-            {activeCategory === 'plaques'
-              ? 'Grandes plaques apéro pour 4 à 5 personnes — les mêmes recettes que la carte'
-              : 'Pains à pizza pétris et façonnés à la main sur place'}
-          </p>
+          <p className="text-lg text-[#8B4513] font-semibold">Pains à pizza pétris et façonnés à la main sur place</p>
         </div>
 
         {loading && (
@@ -83,7 +81,7 @@ export default function PizzaMenu() {
         {!loading && !error && (
           <>
             <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {categories.map((category) => (
+              {visibleCategories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.slug)}
