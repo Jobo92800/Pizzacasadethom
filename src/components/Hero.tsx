@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <video
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://video.wixstatic.com/video/87a2c5_7884b62537104c558ed229d090e67d57/1080p/mp4/file.mp4"
+          src="https://video.wixstatic.com/video/87a2c5_81a4ed7b568947428bdc6db55d40bc51/1080p/mp4/file.mp4"
           autoPlay
           loop
           muted
