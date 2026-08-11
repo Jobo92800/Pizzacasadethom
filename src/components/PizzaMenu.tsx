@@ -61,7 +61,11 @@ export default function PizzaMenu() {
             Nos Pizzas
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#8B4513] to-transparent mx-auto mb-6"></div>
-          <p className="text-lg text-[#8B4513] font-semibold">Pains à pizza pétris et façonnés à la main sur place</p>
+          <p className="text-lg text-[#8B4513] font-semibold">
+            {activeCategory === 'plaques'
+              ? 'Grandes plaques apéro pour 4 à 5 personnes — les mêmes recettes que la carte'
+              : 'Pains à pizza pétris et façonnés à la main sur place'}
+          </p>
         </div>
 
         {loading && (
