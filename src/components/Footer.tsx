@@ -1,4 +1,4 @@
-import { Phone, MapPin, Mail } from 'lucide-react';
+import { Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
                 <span className="text-[#F7E8C7] font-['Cinzel'] font-bold text-xl">LC</span>
               </div>
               <h3 className="font-['Cinzel'] text-2xl font-bold">
-                La Case de TOM
+                La Case de Thom
               </h3>
             </div>
             <p className="text-[#F7E8C7]/80 leading-relaxed">
@@ -28,13 +28,6 @@ export default function Footer() {
               >
                 <Phone className="w-5 h-5" />
                 <span>06 70 18 81 37</span>
-              </a>
-              <a
-                href="mailto:info@lacasethom.fr"
-                className="flex items-center gap-3 text-[#F7E8C7]/90 hover:text-[#D5A14C] transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-                <span>info@lacasethom.fr</span>
               </a>
               <div className="flex items-center gap-3 text-[#F7E8C7]/90">
                 <MapPin className="w-5 h-5" />
@@ -56,7 +49,7 @@ export default function Footer() {
         <div className="border-t-2 border-[#9C5B21] pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[#F7E8C7]/60 text-sm">
-              © {new Date().getFullYear()} La Case de TOM. Tous droits réservés.
+              © {new Date().getFullYear()} La Case de Thom. Tous droits réservés.
             </p>
             <div className="flex gap-6 text-sm text-[#F7E8C7]/60">
               <a href="#menu" className="hover:text-[#D5A14C] transition-colors">Menu</a>

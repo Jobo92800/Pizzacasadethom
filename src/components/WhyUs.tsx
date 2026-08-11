@@ -18,7 +18,7 @@ export default function WhyUs() {
     {
       icon: ShieldCheck,
       title: "Qualité garantie",
-      description: "Produits frais et sélectionnés"
+      description: "Produits frais et de saison sélectionnés"
     }
   ];
 
