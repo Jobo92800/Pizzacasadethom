@@ -51,11 +51,11 @@ export default function BurgersMenu() {
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#D2691E] to-transparent mx-auto mb-6"></div>
           <p className="text-lg text-[#D2691E] font-semibold">Pains à burger pétris et façonnés à la main sur place</p>
-          <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-3xl border-2 border-[#D2691E]/50 shadow-2xl">
+          <div className="mx-auto mt-8 w-full max-w-sm overflow-hidden rounded-3xl border-2 border-[#D2691E]/50 shadow-2xl">
             <img
-              src="/burgeur.png"
-              alt="Burger maison de La Case de Thom"
-              className="h-56 w-full object-cover sm:h-72"
+              src="/burger-hero.png"
+              alt="Rien de mieux qu'un bon pain fait maison pour déguster un burger — La Case de Thom"
+              className="block h-auto w-full"
             />
           </div>
         </div>
