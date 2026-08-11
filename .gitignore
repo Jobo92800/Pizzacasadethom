@@ -21,3 +21,9 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# archive de récupération - ne pas versionner
+repo.zip
+
+# outillage local Claude Code
+.claude/
