@@ -11,6 +11,11 @@ interface ProductCardProps {
   options?: MenuItemOption[];
 }
 
+// Placeholder affiché si une image ne charge pas (évite un cadre vide).
+const FALLBACK_IMG = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#E8D5BC'/><text x='200' y='150' font-family='Georgia, serif' font-size='24' fill='#8B4513' text-anchor='middle' dominant-baseline='middle'>Photo à venir</text></svg>`
+)}`;
+
 export default function ProductCard({ name, ingredients, image, category, options = [] }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,18 +26,26 @@ export default function ProductCard({ name, ingredients, image, category, option
   return (
     <>
       <div
-        className="relative group cursor-pointer"
+        className="relative group cursor-pointer h-full"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => setIsModalOpen(true)}
       >
-        <div className="bg-gradient-to-br from-[#F5E6D3] to-[#E8D5BC] rounded-2xl p-6 border-2 border-[#8B4513] hover:border-[#D2691E] transition-all duration-500 hover:shadow-2xl hover:shadow-[#8B4513]/30 hover:-translate-y-2">
+        <div className="flex h-full flex-col bg-gradient-to-br from-[#F5E6D3] to-[#E8D5BC] rounded-2xl p-6 border-2 border-[#8B4513] hover:border-[#D2691E] transition-all duration-500 hover:shadow-2xl hover:shadow-[#8B4513]/30 hover:-translate-y-2">
 
           <div className="relative mb-6 overflow-hidden rounded-xl border-2 border-[#1F110C]">
             <div className={`absolute inset-0 bg-gradient-to-br from-[#8B4513]/20 to-transparent z-10 transition-opacity duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`}></div>
             <img
               src={image}
               alt={name}
+              loading="lazy"
+              onError={(e) => {
+                const img = e.currentTarget;
+                if (!img.dataset.fallback) {
+                  img.dataset.fallback = '1';
+                  img.src = FALLBACK_IMG;
+                }
+              }}
               className="w-full h-48 object-cover rounded-xl transform transition-transform duration-700 group-hover:scale-110 group-hover:rotate-2"
             />
             {category && (
@@ -48,7 +61,7 @@ export default function ProductCard({ name, ingredients, image, category, option
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="flex grow flex-col gap-4">
             <h3 className="text-[#1F110C] font-['Cinzel'] text-xl font-semibold group-hover:text-[#8B4513] transition-colors duration-300">
               {name}
             </h3>
@@ -92,7 +105,7 @@ export default function ProductCard({ name, ingredients, image, category, option
               </div>
             )}
 
-            <div className="pt-4 border-t-2 border-[#8B4513]/30">
+            <div className="mt-auto pt-4 border-t-2 border-[#8B4513]/30">
               <a
                 href="tel:+33670188137"
                 onClick={(e) => e.stopPropagation()}

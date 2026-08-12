@@ -122,7 +122,7 @@ export default function PizzaMenu() {
               {activeItems.map((item, index) => (
                 <div
                   key={item.id}
-                  className="animate-scale-in"
+                  className="animate-scale-in h-full"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <ProductCard

@@ -93,7 +93,7 @@ export default function BurgersMenu() {
             {burgers.map((burger, index) => (
               <div
                 key={burger.id}
-                className="animate-scale-in"
+                className="animate-scale-in h-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <ProductCard
