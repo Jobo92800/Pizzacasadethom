@@ -25,5 +25,9 @@ dist-ssr
 # archive de récupération - ne pas versionner
 repo.zip
 
+# photos sources (HEIC/PNG lourds) - les versions WebP servies sont dans public/pizzas/
+Photo site-1/
+photo pizza/
+
 # outillage local Claude Code
 .claude/
